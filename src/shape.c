@@ -573,6 +573,18 @@ int b2Chain_GetSegments( b2ChainId chainId, b2ShapeId* segmentArray, int capacit
 	return count;
 }
 
+int b2Chain_GetSurfaceMaterialCount( b2ChainId chainId )
+{
+	b2World* world = b2GetWorldLocked( chainId.world0 );
+	if ( world == NULL )
+	{
+		return 0;
+	}
+
+	b2ChainShape* chain = b2GetChainShape( world, chainId );
+	return chain->materialCount;
+}
+
 b2AABB b2ComputeShapeAABB( const b2Shape* shape, b2Transform xf )
 {
 	switch ( shape->type )
